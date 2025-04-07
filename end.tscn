@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://pwpualgvqjbl"]
+
+[ext_resource type="Texture2D" uid="uid://be3y7uguhhorl" path="res://backgrounds/Restaurant-4.png.png" id="1_pi3sf"]
+[ext_resource type="PackedScene" uid="uid://drwn0tsciimth" path="res://scenes/player.tscn" id="2_yy1wf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gavea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfcf1"]
+size = Vector2(111.889, 2480.71)
+
+[node name="end" type="Node2D"]
+
+[node name="Restaurant-4_png" type="Sprite2D" parent="."]
+position = Vector2(360, 250)
+texture = ExtResource("1_pi3sf")
+
+[node name="Player" parent="." instance=ExtResource("2_yy1wf")]
+position = Vector2(394, 286)
+scale = Vector2(1.32909, 1.32192)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+offset = Vector2(0, -25)
+zoom = Vector2(1.8, 1.8)
+limit_left = 0
+limit_top = 25
+limit_right = 670
+limit_bottom = 450
+limit_smoothed = true
+position_smoothing_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(446, 406)
+scale = Vector2(891.774, -169.491)
+
+[node name="Floor" type="MeshInstance2D" parent="Floor"]
+visible = false
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_gavea")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-0.000165284, -0.202742)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_wfcf1")
+metadata/_edit_lock_ = true
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2(755, 375)
+rotation = 1.56176
+scale = Vector2(891.774, -169.491)
+
+[node name="Floor" type="MeshInstance2D" parent="Floor2"]
+visible = false
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_gavea")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Floor2"]
+position = Vector2(-0.000165284, -0.202742)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_wfcf1")
+metadata/_edit_lock_ = true
+
+[node name="Floor3" type="StaticBody2D" parent="."]
+position = Vector2(-60.9999, 336)
+rotation = 1.56176
+scale = Vector2(891.774, -169.491)
+
+[node name="Floor" type="MeshInstance2D" parent="Floor3"]
+visible = false
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_gavea")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Floor3"]
+position = Vector2(-0.000165284, -0.202742)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_wfcf1")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 281.0
+offset_top = 167.0
+offset_right = 518.0
+offset_bottom = 216.0
+text = "HAPPY ANNIVERSARY!!
+i hope you enjoyed the game :)"

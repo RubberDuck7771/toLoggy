@@ -1,0 +1,297 @@
+[gd_scene load_steps=10 format=3 uid="uid://crfmw6if0nitn"]
+
+[ext_resource type="Script" path="res://levels/opening.gd" id="1_4gjos"]
+[ext_resource type="Texture2D" uid="uid://cjrtbu08h0m8p" path="res://backgrounds/Neighborhood.png" id="1_7td1g"]
+[ext_resource type="PackedScene" uid="uid://drwn0tsciimth" path="res://scenes/player.tscn" id="2_1y63k"]
+[ext_resource type="PackedScene" uid="uid://2yfhq5a1bght" path="res://scenes/h_box_container.tscn" id="3_dd0r7"]
+[ext_resource type="Texture2D" uid="uid://cyfmb6e0mkb8n" path="res://sprites/next.png" id="5_s2joq"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2c3e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7lh"]
+size = Vector2(111.889, 2480.71)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sb1xr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iil32"]
+size = Vector2(111.889, 2480.71)
+
+[node name="Opening" type="Node2D"]
+script = ExtResource("1_4gjos")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_right = 8606.0
+offset_bottom = 466.0
+texture = ExtResource("1_7td1g")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+position = Vector2(-55, -120)
+rotation = -1.5708
+scale = Vector2(1834.37, -105.5)
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="MeshInstance2D" parent="LeftBorder"]
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1)
+mesh = SubResource("QuadMesh_2c3e3")
+
+[node name="Collision" type="CollisionShape2D" parent="LeftBorder"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_ig7lh")
+
+[node name="LeftBorder2" type="StaticBody2D" parent="."]
+position = Vector2(5264, -220)
+rotation = -1.5708
+scale = Vector2(1834.37, -105.5)
+
+[node name="LeftBorder" type="MeshInstance2D" parent="LeftBorder2"]
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1)
+mesh = SubResource("QuadMesh_2c3e3")
+
+[node name="Collision" type="CollisionShape2D" parent="LeftBorder2"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_ig7lh")
+
+[node name="Player" parent="." instance=ExtResource("2_1y63k")]
+position = Vector2(1011, 304)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+offset = Vector2(0, -50)
+zoom = Vector2(1.1, 1.1)
+limit_left = 0
+limit_right = 5150
+limit_bottom = 550
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="HBoxContainer" parent="Player/Camera2D2" instance=ExtResource("3_dd0r7")]
+z_index = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -75.0
+offset_top = -111.0
+offset_right = 3.0
+offset_bottom = -71.0
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(1258, 463)
+scale = Vector2(5916.77, 197.274)
+
+[node name="Floor" type="MeshInstance2D" parent="Floor"]
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_sb1xr")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-8.28877e-08, 8.9407e-08)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_iil32")
+metadata/_edit_lock_ = true
+
+[node name="Box" type="StaticBody2D" parent="."]
+position = Vector2(2731, 334)
+scale = Vector2(60.1666, 75.0876)
+
+[node name="Floor" type="MeshInstance2D" parent="Box"]
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_sb1xr")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Box"]
+position = Vector2(-8.28877e-08, 8.9407e-08)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_iil32")
+metadata/_edit_lock_ = true
+
+[node name="Box2" type="StaticBody2D" parent="."]
+position = Vector2(2998, 334)
+scale = Vector2(60.1666, 217.368)
+
+[node name="Floor" type="MeshInstance2D" parent="Box2"]
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_sb1xr")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Box2"]
+position = Vector2(-8.28877e-08, 8.9407e-08)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_iil32")
+metadata/_edit_lock_ = true
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(1258, -102)
+scale = Vector2(6397.64, -235.739)
+
+[node name="Ceiling" type="MeshInstance2D" parent="Ceiling"]
+modulate = Color(0.490196, 0.701961, 0.913725, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_sb1xr")
+
+[node name="Collision" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(-0.000165284, -0.202742)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_iil32")
+
+[node name="Line1" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 772.0
+offset_top = 375.0
+offset_right = 1003.0
+offset_bottom = 479.0
+text = "Omg, we're so late! The restaurants gonna close soon! Quick, check the bus!!"
+
+[node name="Line2" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 1047.0
+offset_top = 375.0
+offset_right = 1278.0
+offset_bottom = 479.0
+text = "Um, 472529472701839 hours."
+
+[node name="Line3" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 920.0
+offset_top = 394.0
+offset_right = 988.0
+offset_bottom = 435.0
+text = "WHAT"
+
+[node name="Line4" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 1047.0
+offset_top = 375.0
+offset_right = 1278.0
+offset_bottom = 479.0
+text = "and it says the trains coming in lim(x->inf) x^2+1 / x minutes..."
+
+[node name="Line5" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 772.0
+offset_top = 375.0
+offset_right = 1003.0
+offset_bottom = 479.0
+text = "erm what do we do then :(
+ i was looking forward to this date..."
+
+[node name="Line6" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 1047.0
+offset_top = 375.0
+offset_right = 1278.0
+offset_bottom = 479.0
+text = "looks like we'll have to walk"
+
+[node name="Line7" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 772.0
+offset_top = 375.0
+offset_right = 1003.0
+offset_bottom = 479.0
+text = "ain't no way I'm walking that far"
+
+[node name="Line8" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 1047.0
+offset_top = 375.0
+offset_right = 1278.0
+offset_bottom = 479.0
+text = "do you want to cook dinner then?"
+
+[node name="Line9" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 772.0
+offset_top = 375.0
+offset_right = 1003.0
+offset_bottom = 479.0
+text = "ok you're right, let's go"
+
+[node name="Line10" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 1047.0
+offset_top = 375.0
+offset_right = 1278.0
+offset_bottom = 479.0
+text = "SIGHH it's hard being THIS good at persuasion-"
+
+[node name="Line11" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 772.0
+offset_top = 375.0
+offset_right = 1003.0
+offset_bottom = 479.0
+text = "less talking more walking please"
+
+[node name="Controls" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 2056.0
+offset_top = 136.0
+offset_right = 2242.0
+offset_bottom = 193.0
+text = "A/D or < > to move
+S or v to face forward"
+
+[node name="Controls2" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 2810.0
+offset_top = 92.0
+offset_right = 2939.0
+offset_bottom = 149.0
+text = "W or ^ to jump!"
+
+[node name="Controls3" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 3516.0
+offset_top = 149.0
+offset_right = 3668.0
+offset_bottom = 206.0
+text = "press and hold E or SHIFT to attack!"
+
+[node name="Controls4" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 4212.0
+offset_top = 102.0
+offset_right = 4394.0
+offset_bottom = 184.0
+text = "click these buttons to advance to the next section!!"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 4170.0
+offset_top = 190.0
+offset_right = 4418.0
+offset_bottom = 288.0
+icon = ExtResource("5_s2joq")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

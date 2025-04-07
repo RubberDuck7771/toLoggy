@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds870n0uu2bxa"]
+
+[ext_resource type="Script" path="res://scenes/hearts_gui.gd" id="1_qfk41"]
+[ext_resource type="Texture2D" uid="uid://cqe67tkm7ps0k" path="res://sprites/hearts.png" id="2_waeys"]
+
+[sub_resource type="Animation" id="Animation_q578j"]
+resource_name = "full"
+length = 6.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_0h1qs"]
+resource_name = "hit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqq6n"]
+_data = {
+"full": SubResource("Animation_q578j"),
+"hit": SubResource("Animation_0h1qs")
+}
+
+[node name="hearts_gui" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 17)
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 36.0
+script = ExtResource("1_qfk41")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15, 16)
+scale = Vector2(1.25, 1.2)
+texture = ExtResource("2_waeys")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_gqq6n")
+}

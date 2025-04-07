@@ -1,0 +1,992 @@
+[gd_scene load_steps=23 format=3 uid="uid://brlujhchr2pio"]
+
+[ext_resource type="PackedScene" uid="uid://drwn0tsciimth" path="res://scenes/player.tscn" id="1_1qq0y"]
+[ext_resource type="Script" path="res://levels/level_one.gd" id="1_3q3e6"]
+[ext_resource type="PackedScene" uid="uid://2yfhq5a1bght" path="res://scenes/h_box_container.tscn" id="3_eex5n"]
+[ext_resource type="Texture2D" uid="uid://banly2tm4gw3b" path="res://backgrounds/Midvoid.png" id="3_xf4w0"]
+[ext_resource type="Texture2D" uid="uid://c7wm6g2yfrn1u" path="res://backgrounds/MuteCity.png.png" id="5_u6ij4"]
+[ext_resource type="Texture2D" uid="uid://cs61w1n5b5dun" path="res://sprites/Platforms.png" id="6_0kmu5"]
+[ext_resource type="Texture2D" uid="uid://cyfmb6e0mkb8n" path="res://sprites/next.png" id="6_5x8vv"]
+[ext_resource type="PackedScene" uid="uid://fj4wcksb747y" path="res://scenes/danger.tscn" id="6_qfa4a"]
+[ext_resource type="Texture2D" uid="uid://buwg8d7u4vag" path="res://sprites/8ball.png" id="8_t3nrn"]
+[ext_resource type="PackedScene" uid="uid://cr74v1g3cjtjl" path="res://scenes/maushold.tscn" id="10_sewr2"]
+[ext_resource type="PackedScene" uid="uid://dnuro78cfdgk0" path="res://scenes/heal.tscn" id="11_5jsej"]
+[ext_resource type="Texture2D" uid="uid://d3mj3p46o3jqr" path="res://sprites/Tree.png" id="12_thmn1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2a2fg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyd70"]
+size = Vector2(111.889, 2480.71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygoss"]
+size = Vector2(1.36071, 1.29449)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr30v"]
+size = Vector2(184, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m58up"]
+size = Vector2(7.92426, 133.083)
+
+[sub_resource type="Animation" id="Animation_q3tgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5282, 393)]
+}
+
+[sub_resource type="Animation" id="Animation_r5e3r"]
+resource_name = "moveIntoScene"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.96667, 10, 12.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5200, 393), Vector2(5200, 393), Vector2(4976, 395), Vector2(4976, 395)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wf4e"]
+_data = {
+"RESET": SubResource("Animation_q3tgs"),
+"moveIntoScene": SubResource("Animation_r5e3r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vs8x"]
+size = Vector2(184, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14n7k"]
+size = Vector2(67.5, 266.75)
+
+[node name="levelOne" type="Node2D"]
+script = ExtResource("1_3q3e6")
+
+[node name="Player" parent="." instance=ExtResource("1_1qq0y")]
+position = Vector2(159, 535)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+zoom = Vector2(1.1, 1.1)
+limit_left = 0
+limit_right = 9800
+limit_bottom = 750
+limit_smoothed = true
+position_smoothing_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" parent="Player/Camera2D2" instance=ExtResource("3_eex5n")]
+z_index = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -75.0
+offset_top = -111.0
+offset_right = 3.0
+offset_bottom = -71.0
+metadata/_edit_lock_ = true
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Midvoid" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -712)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/Midvoid"]
+offset_top = 183.0
+offset_right = 11123.0
+offset_bottom = 923.0
+texture = ExtResource("3_xf4w0")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_top = 194.0
+offset_right = 11123.0
+offset_bottom = 660.0
+texture = ExtResource("5_u6ij4")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+position = Vector2(-55, -120)
+rotation = -1.5708
+scale = Vector2(1834.37, -105.5)
+
+[node name="LeftBorder" type="MeshInstance2D" parent="LeftBorder"]
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="LeftBorder"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="LeftBorder2" type="StaticBody2D" parent="."]
+position = Vector2(9906, 76)
+rotation = -1.5708
+scale = Vector2(1834.37, -105.5)
+
+[node name="LeftBorder" type="MeshInstance2D" parent="LeftBorder2"]
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="LeftBorder2"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(2480, 746)
+scale = Vector2(12748.2, 203.391)
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="MeshInstance2D" parent="Floor"]
+modulate = Color(0.12549, 0.176471, 0.247059, 1)
+position = Vector2(0.17292, 0)
+scale = Vector2(1.3603, 1)
+mesh = SubResource("QuadMesh_2a2fg")
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-0.000165284, -0.202742)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+metadata/_edit_lock_ = true
+
+[node name="Next Level" type="Button" parent="."]
+visible = false
+self_modulate = Color(1, 0.705882, 1, 1)
+offset_left = 9203.0
+offset_top = 451.0
+offset_right = 9451.0
+offset_bottom = 549.0
+icon = ExtResource("6_5x8vv")
+
+[node name="Parkour" type="Node" parent="."]
+
+[node name="PinkGoop" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(1909, 690)
+rotation = -3.14159
+scale = Vector2(88.8248, -178.494)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop/danger"]
+position = Vector2(-0.00857449, 0.062542)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkBrick2" type="StaticBody2D" parent="Parkour"]
+position = Vector2(4275, 611)
+rotation = -1.57079
+scale = Vector2(0.550571, 1.44264)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick2"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick2"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick10" type="StaticBody2D" parent="Parkour"]
+position = Vector2(5639, 555)
+scale = Vector2(0.346792, 1.02444)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick10"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick10"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick11" type="StaticBody2D" parent="Parkour"]
+position = Vector2(5899, 438)
+scale = Vector2(0.262242, 1.18731)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick11"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick11"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick12" type="StaticBody2D" parent="Parkour"]
+position = Vector2(6071, 393)
+scale = Vector2(0.899274, 1.39359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick12"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick12"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick14" type="StaticBody2D" parent="Parkour"]
+position = Vector2(6489, 451)
+rotation = 1.57079
+scale = Vector2(0.963449, 1.80366)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick14"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick14"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick15" type="StaticBody2D" parent="Parkour"]
+position = Vector2(6691, 393)
+scale = Vector2(0.549891, 1.06055)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick15"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick15"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick16" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7002, 346)
+scale = Vector2(0.549891, 1.06055)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick16"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick16"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick17" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7326, 393)
+scale = Vector2(0.549891, 1.06055)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick17"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick17"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick18" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7569, 560)
+scale = Vector2(0.549891, 1.06055)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick18"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick18"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick19" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7987, 427)
+scale = Vector2(1.5822, 1.81915)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick19"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_xr30v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick19"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="Plank" type="StaticBody2D" parent="Parkour"]
+position = Vector2(6496, 616)
+rotation = 2.35619
+scale = Vector2(-1.07396, 1.17987)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/Plank"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("8_t3nrn")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/Plank"]
+position = Vector2(84.2626, 14.9807)
+shape = SubResource("RectangleShape2D_m58up")
+
+[node name="Plank5" type="StaticBody2D" parent="Parkour"]
+z_index = -1
+position = Vector2(5826, 397)
+rotation = 4.45058
+scale = Vector2(-1.2233, 0.74016)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/Plank5"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("8_t3nrn")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/Plank5"]
+position = Vector2(84.2626, 14.9807)
+shape = SubResource("RectangleShape2D_m58up")
+
+[node name="Plank2" type="StaticBody2D" parent="Parkour"]
+position = Vector2(8010, 582)
+rotation = 0.785397
+scale = Vector2(-1.43678, 1.89599)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/Plank2"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("8_t3nrn")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/Plank2"]
+position = Vector2(84.2626, 14.9807)
+shape = SubResource("RectangleShape2D_m58up")
+
+[node name="Plank3" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7287, 560)
+rotation = 3.14159
+scale = Vector2(-1.15741, 1.58783)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/Plank3"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("8_t3nrn")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/Plank3"]
+position = Vector2(84.2626, 14.9807)
+shape = SubResource("RectangleShape2D_m58up")
+
+[node name="Plank4" type="StaticBody2D" parent="Parkour"]
+position = Vector2(7303, 622)
+rotation = 2.61799
+scale = Vector2(-1.30708, -0.534597)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/Plank4"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("8_t3nrn")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/Plank4"]
+position = Vector2(84.2626, 14.9807)
+shape = SubResource("RectangleShape2D_m58up")
+
+[node name="maushold" parent="Parkour" instance=ExtResource("10_sewr2")]
+position = Vector2(5282, 393)
+scale = Vector2(1.32697, 1.06881)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Parkour/maushold"]
+libraries = {
+"": SubResource("AnimationLibrary_4wf4e")
+}
+
+[node name="maushold2" parent="Parkour" instance=ExtResource("10_sewr2")]
+position = Vector2(6055, 393)
+scale = Vector2(1.32697, 1.06881)
+
+[node name="maushold3" parent="Parkour" instance=ExtResource("10_sewr2")]
+position = Vector2(6480, 387)
+scale = Vector2(1.32697, 1.06881)
+
+[node name="maushold4" parent="Parkour" instance=ExtResource("10_sewr2")]
+position = Vector2(6924, 384)
+scale = Vector2(1.32697, 1.06881)
+
+[node name="maushold5" parent="Parkour" instance=ExtResource("10_sewr2")]
+position = Vector2(7830, 211)
+scale = Vector2(1.32697, 1.06881)
+
+[node name="PinkBrick" type="StaticBody2D" parent="Parkour"]
+position = Vector2(2465, 517)
+scale = Vector2(0.592652, 1.15068)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick6" type="StaticBody2D" parent="Parkour"]
+position = Vector2(3765, 427)
+scale = Vector2(0.379208, 1.29599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick6"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick6"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick7" type="StaticBody2D" parent="Parkour"]
+position = Vector2(3934, 345)
+scale = Vector2(0.379208, 1.29599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick7"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick7"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick8" type="StaticBody2D" parent="Parkour"]
+position = Vector2(4182, 278)
+scale = Vector2(0.379208, 1.29599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick8"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick8"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick3" type="StaticBody2D" parent="Parkour"]
+position = Vector2(2717, 458)
+scale = Vector2(0.362312, 1.25281)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick3"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick3"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick13" type="StaticBody2D" parent="Parkour"]
+position = Vector2(2991, 427)
+scale = Vector2(0.362312, 1.25281)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick13"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick13"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick4" type="StaticBody2D" parent="Parkour"]
+position = Vector2(3304, 508)
+rotation = 1.57079
+scale = Vector2(0.621648, 1.23128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick4"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick4"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick5" type="StaticBody2D" parent="Parkour"]
+position = Vector2(3588, 468)
+rotation = 1.57079
+scale = Vector2(0.621648, 1.23128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick5"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick5"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkBrick9" type="StaticBody2D" parent="Parkour"]
+position = Vector2(4512, 427)
+rotation = 1.57079
+scale = Vector2(1.07273, -1.62487)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkBrick9"]
+position = Vector2(92, 21)
+shape = SubResource("RectangleShape2D_0vs8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parkour/PinkBrick9"]
+position = Vector2(92, 15)
+scale = Vector2(2.04667, 1.47778)
+texture = ExtResource("6_0kmu5")
+
+[node name="PinkGoop2" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(2598, 721)
+rotation = 3.14159
+scale = Vector2(280.48, -243.776)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop2"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop2"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop2" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop2/danger"]
+position = Vector2(-0.00857449, 0.062542)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop3" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(3901, 699)
+rotation = 3.14159
+scale = Vector2(998.589, -233.188)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop3"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop3"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop3" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop3/danger"]
+position = Vector2(-0.00857449, 0.062542)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop6" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(7509, 716)
+rotation = 3.14159
+scale = Vector2(1155.27, -233.187)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop6"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop6"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop6" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop6/danger"]
+position = Vector2(-0.00857544, 0.0768883)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop4" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(6391, 675)
+rotation = 3.14159
+scale = Vector2(55.1162, -168.576)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop4"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop4"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop4" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop4/danger"]
+position = Vector2(-0.00857449, 0.062542)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop5" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(6408, 522)
+rotation = 3.14159
+scale = Vector2(30.1155, -138.015)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop5"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop5"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop5" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop5/danger"]
+position = Vector2(-0.00857544, 0.0964315)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop7" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(7377, 422)
+rotation = 3.14159
+scale = Vector2(24.0514, -55.9084)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop7"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop7"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop7" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop7/danger"]
+position = Vector2(-0.00854492, 0.0529857)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="PinkGoop8" type="StaticBody2D" parent="Parkour"]
+z_index = 1
+position = Vector2(7586, 587)
+rotation = 3.14159
+scale = Vector2(24.0514, -55.9084)
+
+[node name="PinkGoop" type="MeshInstance2D" parent="Parkour/PinkGoop8"]
+modulate = Color(0.803922, 0.564706, 0.729412, 1)
+position = Vector2(0.176534, 0)
+scale = Vector2(1.35307, 1.04488)
+mesh = SubResource("QuadMesh_2a2fg")
+
+[node name="Collision" type="CollisionShape2D" parent="Parkour/PinkGoop8"]
+position = Vector2(-0.0188603, 0.495263)
+rotation = -1.5708
+scale = Vector2(0.00947867, -0.000547581)
+skew = -0.000115037
+shape = SubResource("RectangleShape2D_oyd70")
+
+[node name="danger" parent="Parkour/PinkGoop8" instance=ExtResource("6_qfa4a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parkour/PinkGoop8/danger"]
+position = Vector2(-0.00854492, 0.132669)
+shape = SubResource("RectangleShape2D_ygoss")
+
+[node name="Lines" type="Node" parent="."]
+
+[node name="Line1" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 565.0
+offset_top = 660.0
+offset_right = 741.0
+offset_bottom = 733.0
+text = "man, how'd it get so dark already..."
+
+[node name="Line2" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 1545.0
+offset_top = 660.0
+offset_right = 1721.0
+offset_bottom = 733.0
+text = "Yo what IS that"
+
+[node name="Line3" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 1356.0
+offset_top = 660.0
+offset_right = 1532.0
+offset_bottom = 733.0
+text = "idk but it's stinky"
+
+[node name="Line4" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 1545.0
+offset_top = 660.0
+offset_right = 1721.0
+offset_bottom = 733.0
+text = "...
+"
+
+[node name="Line5" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 4871.0
+offset_top = 643.0
+offset_right = 5047.0
+offset_bottom = 716.0
+text = "You do know where we're going right?"
+
+[node name="Line7" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 4871.0
+offset_top = 643.0
+offset_right = 5047.0
+offset_bottom = 716.0
+text = "ok then what is THAT
+"
+
+[node name="Line6" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 4695.0
+offset_top = 643.0
+offset_right = 4871.0
+offset_bottom = 716.0
+text = "of courseeeee"
+
+[node name="Line8" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 4695.0
+offset_top = 643.0
+offset_right = 4871.0
+offset_bottom = 716.0
+text = "what's what?"
+
+[node name="Line9" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 4695.0
+offset_top = 643.0
+offset_right = 4871.0
+offset_bottom = 716.0
+text = "OH MY GOD ITS COMING FOR US"
+
+[node name="Line10" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8872.0
+offset_top = 643.0
+offset_right = 9048.0
+offset_bottom = 716.0
+text = "*huff huff*"
+
+[node name="Line13a" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8872.0
+offset_top = 643.0
+offset_right = 9048.0
+offset_bottom = 716.0
+text = "hi
+"
+
+[node name="Line13b" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8982.0
+offset_top = 643.0
+offset_right = 9158.0
+offset_bottom = 716.0
+text = "hi
+"
+
+[node name="Line11" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8805.0
+offset_top = 643.0
+offset_right = 8981.0
+offset_bottom = 716.0
+text = "at this rate, we'll never make it to the restaurant!"
+
+[node name="Line12" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9273.0
+offset_top = 643.0
+offset_right = 9449.0
+offset_bottom = 716.0
+text = "HELLO HUMANS"
+
+[node name="Line14" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9254.0
+offset_top = 643.0
+offset_right = 9430.0
+offset_bottom = 716.0
+text = "I WOULD LIKE TO PRESENT TO YOU A TRADE OFFER"
+
+[node name="Line15" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9254.0
+offset_top = 646.0
+offset_right = 9483.0
+offset_bottom = 749.0
+text = "COMPLETE MY CHALLENGES, AND I WILL GRANT YOU ANYTHING YOU WISH FOR"
+
+[node name="Line18" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9254.0
+offset_top = 646.0
+offset_right = 9483.0
+offset_bottom = 749.0
+text = "UM, MAYBE I WAS UNCLEAR. I SAID ANYTHING YOU CAN THINK OF-"
+
+[node name="Line20" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9254.0
+offset_top = 646.0
+offset_right = 9483.0
+offset_bottom = 749.0
+text = "VERY WELL. FIND ME, AND THEN DEFEAT ME AND MY CHILDREN."
+
+[node name="Line21" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 9254.0
+offset_top = 646.0
+offset_right = 9483.0
+offset_bottom = 749.0
+text = "I WILL BE WAITING... AND WATCHING"
+
+[node name="Line16" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8805.0
+offset_top = 646.0
+offset_right = 8977.0
+offset_bottom = 733.0
+text = "*gasp* wait, this is perfect!"
+
+[node name="Line17" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8981.0
+offset_top = 643.0
+offset_right = 9153.0
+offset_bottom = 730.0
+text = "yeah, we can wish to be teleported to the restaurant!!"
+
+[node name="Line19" type="RichTextLabel" parent="Lines"]
+visible = false
+offset_left = 8981.0
+offset_top = 643.0
+offset_right = 9153.0
+offset_bottom = 730.0
+text = "ok sir, we wish to be teleported to Blahaj's HK Tea Sushi!!"
+
+[node name="TriggerL1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerL1"]
+position = Vector2(743, 568)
+shape = SubResource("RectangleShape2D_14n7k")
+
+[node name="TriggerL2" type="Area2D" parent="."]
+position = Vector2(743, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerL2"]
+position = Vector2(869, 502.375)
+shape = SubResource("RectangleShape2D_14n7k")
+
+[node name="TriggerL4" type="Area2D" parent="."]
+position = Vector2(4053, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerL4"]
+position = Vector2(850, 502)
+shape = SubResource("RectangleShape2D_14n7k")
+
+[node name="TriggerL10" type="Area2D" parent="."]
+position = Vector2(8375, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerL10"]
+position = Vector2(676, 513)
+shape = SubResource("RectangleShape2D_14n7k")
+
+[node name="GodMaus" parent="." instance=ExtResource("10_sewr2")]
+visible = false
+position = Vector2(8746, 5.42101e-20)
+scale = Vector2(3.62258, 3.12219)
+
+[node name="Heal" parent="." instance=ExtResource("11_5jsej")]
+position = Vector2(7053, 305)
+scale = Vector2(2.49076, 2.47369)
+
+[node name="Heal3" parent="." instance=ExtResource("11_5jsej")]
+position = Vector2(9679, 549)
+scale = Vector2(2.49076, 2.47369)
+
+[node name="Heal2" parent="." instance=ExtResource("11_5jsej")]
+position = Vector2(4299, 397)
+scale = Vector2(2.49076, 2.47369)
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(9751, 516)
+scale = Vector2(6.53333, 6.65625)
+texture = ExtResource("12_thmn1")
+
+[connection signal="pressed" from="Next Level" to="." method="_on_next_level_pressed"]
+[connection signal="body_entered" from="TriggerL1" to="." method="_on_trigger_l_1_body_entered"]
+[connection signal="body_entered" from="TriggerL2" to="." method="_on_trigger_l_2_body_entered"]
+[connection signal="body_entered" from="TriggerL4" to="." method="_on_trigger_l_4_body_entered"]
+[connection signal="body_entered" from="TriggerL10" to="." method="_on_trigger_l_10_body_entered"]
